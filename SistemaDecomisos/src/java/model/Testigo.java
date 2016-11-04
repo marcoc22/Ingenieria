@@ -24,12 +24,11 @@ public class Testigo extends Persona implements Serializable, Jsonable  {
         this.idTestigo = idTestigo;
     }
 
-    public int getIdPolicia() {
+    public int getIdTestigo() {
         return idTestigo;
     }
 
     public void setIdTestigo(int idTestigo) {
         this.idTestigo = idTestigo;
     }
-
 }

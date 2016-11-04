@@ -192,7 +192,8 @@ Proxy.actaDecomiso = function (criterio) {
         dataType: 'json',
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
-            if (data != null) {
+            if (data === 2) {
+                alert("Se guardo el acta de decomiso");
                 window.location.href = "home.jsp";
             } else {
                 $("#login").html("Iniciar Sesi\u00F3n ");

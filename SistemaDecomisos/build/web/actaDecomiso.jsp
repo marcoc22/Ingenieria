@@ -212,7 +212,7 @@ Author     : Mery Zúñiga
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre_testigo">Nombre del testigo<span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="nombre_testigo" required="required" class="form-control col-md-7 col-xs-12">
+                                                    <input type="text" id="nombre_testigoText" required="required" class="form-control col-md-7 col-xs-12">
                                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                                 </div>
                                             </div>
@@ -251,7 +251,7 @@ Author     : Mery Zúñiga
                                             </div>
                                         </div>
                                         <div class="form-group status" id="groupIdInteresado">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_interesado">Identir form-contficación del interesado</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_interesado">Identificación del interesado</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" id="id_interesado" class="form-control col-md-7 col-xs-12">
                                                 <span class="fa fa-indent form-control-feedback right" aria-hidden="true"></span>

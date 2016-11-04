@@ -8,9 +8,9 @@ Decomiso.prototype = {
     cantidad: 0,
     observaciones: "",
     Decomiso: function (idDecomiso, nombre, cantidad, observaciones) {
-        this.idDecomiso = idDecomiso, 
-        this.nombre = nombre,
-        this.cantidad = cantidad,
+        this.idDecomiso = idDecomiso;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
         this.observaciones = observaciones;
     }
 };

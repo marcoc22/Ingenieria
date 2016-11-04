@@ -230,13 +230,13 @@ public class Model {
      if (con != null) {
      SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
      String sql = "{call prc_ins_adecomiso('" + acta.getIdDecomiso() + "',"
-                        + "'1',"
-                        + "'1',"
+                        + "'" + acta.getPolicia().getIdPolicia() + "'," 
+                        + "'" + acta.getInteresado().getIdInteresado() + "'," 
                         + "'1',"  
                         + "'" + sdf.format(acta.getFecha())+ "',"
                         + "'111'," 
                         + "'" + acta.getObservaciones() + "'," 
-                        + "'" + 222
+                        + "'" + acta.getTestigo().getIdTestigo() 
                         + "')}";
                 pstmt = con.prepareCall(sql);
      pstmt.executeUpdate();
@@ -244,16 +244,118 @@ public class Model {
      }
 
      } catch (SQLException e) {
-     res = 2;
+     res = 1;
      } finally {
      try {
      con.close();
      } catch (SQLException ex) {
-     res = 2;
+     res = 1;
      }
      }
      return res;
      }
+     
+    public int guardarInteresado(Interesado interesado) {
+        Connection con = null;
+        int res = 0;//res =0 cuando hay error en conexion
+        try {
+            con = Pool.getConnection();
+            CallableStatement pstmt = null;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+            ResultSet rs = null;
+            if (con != null) {
+
+                String sql = "{call prc_ins_int('" + interesado.getNombre()+ "',"
+                        + "'" + interesado.getIdentificacion()+ "',"
+                        + "'" + interesado.getApellido1()+ "',"
+                        + "'" + interesado.getApellido2()+ "',"
+                        + "'" + sdf.format(interesado.getFechaNacimiento())+ "',"
+                        + "'" + interesado.getDomicilio().getDireccionExacta()+ "')}";
+                pstmt = con.prepareCall(sql);
+
+                pstmt.executeUpdate();
+                res = 2;// res = 2 cuando indica exito!
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+            }
+        }
+        return res;
+    }
+    
+    public int guardarPolicia(Policia policia) {
+        Connection con = null;
+        int res = 0;//res =0 cuando hay error en conexion
+        try {
+            con = Pool.getConnection();
+            CallableStatement pstmt = null;
+
+            ResultSet rs = null;
+            if (con != null) {
+
+                String sql = "{call prc_ins_pm('"
+                        + "10','" + policia.getNombre()+ "')}";
+                pstmt = con.prepareCall(sql);
+
+                pstmt.executeUpdate();
+                res = 2;// res = 2 cuando indica exito!
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+            }
+        }
+        return res;
+    }
+    
+    public int guardarTestigo(Testigo testigo) {
+        Connection con = null;
+        int res = 0;//res =0 cuando hay error en conexion
+        try {
+            con = Pool.getConnection();
+            CallableStatement pstmt = null;
+
+            ResultSet rs = null;
+            if (con != null) {
+
+                String sql = "{call prc_ins_test('" + testigo.getNombre()+ "',"
+                        + "'" + testigo.getApellido1()+ "',"
+                        + "'" + testigo.getApellido2()
+                        + "')}";
+                pstmt = con.prepareCall(sql);
+
+                pstmt.executeUpdate();
+                res = 2;// res = 2 cuando indica exito!
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                res = 1;//res  = 1 cuando hay excepcion, ejemplo: llave primaria repetida
+            }
+        }
+        return res;
+    }
 
     public static java.sql.Date convertFromJAVADateToSQLDate(java.util.Date javaDate) {
         java.sql.Date sqlDate = null;
@@ -262,5 +364,37 @@ public class Model {
         }
         return sqlDate;
     }
+    
+    public int ultimaActaDecomiso(){
+        Connection con = null;
+        int last = -1;
+        try {
+            con = Pool.getConnection();
+            Statement pstmt = null;
+            ResultSet rs = null;
+            if (con != null) {
 
+                String sql = "select *  from ( select ActaDecomiso.*, max(IdDecomiso) over () as max_pk from ActaDecomiso) where IdDecomiso = max_pk";
+                pstmt = con.createStatement();
+                rs = pstmt.executeQuery(sql);
+                while (rs.next()) {
+                    last = rs.getInt("max_pk");
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return last;
+        
+        
+        
+        
+    }
 }

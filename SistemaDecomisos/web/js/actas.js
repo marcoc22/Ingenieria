@@ -13,19 +13,19 @@ function enviarActa(){
     var pTestigo = document.getElementById("nombre_testigo");
     var idDecomiso = 0;
     
-    var policia = new Policia("","","","","",0); 
+    var policia = new Policia("2","a","b","c",1); 
     var testigo;
     if(pTestigo.selectedIndex === 1)
-        testigo = new Testigo($('#id_testigo').val()); 
+        testigo = new Testigo(1,$('#id_testigo').val(), $('#nombre_testigoText').val(), "asd", "asd" ); 
     else 
-        testigo = new Testigo(0);
-    var lugar = new Lugar(new Distrito(pDistrito.selectedIndex, pDistrito.options[pDistrito.selectedIndex].value), "place"); 
+        testigo = new Testigo(1," ", " ", " ", " ");
+    var lugar = new Lugar(new Distrito(pDistrito.selectedIndex, pDistrito.options[pDistrito.selectedIndex].value), "Por el parque central"); 
     var fechaDecomiso = $('#fecha').val(); 
-    var horaDecomiso = $('#hora').val();; 
-    var interesado = new Interesado($('#id_interesado').val(), $('#fechaNac').val(), lugar); 
+    var horaDecomiso = $('#hora').val(); 
+    var interesado = new Interesado(1,$('#fechaNac').val(),lugar, $('#id_interesado').val(), $('#apellido1_interesado').val(), $('#apellido2_interesado').val(), "En algun lugar de heredia"); 
     var decomisos = [new Decomiso(5, "a", 1, "xxx"), new Decomiso(6, "a", 1, "xxx")]; 
     var observaciones = "a";
-    var actaDecomiso = new ActaDecomiso(idDecomiso,policia, testigo, lugar,
+    var actaDecomiso = new ActaDecomiso(10,policia, testigo, lugar,
                                         fechaDecomiso, horaDecomiso, interesado,
                                         decomisos, observaciones);
     Proxy.actaDecomiso(JSON.stringify(actaDecomiso, replacer));

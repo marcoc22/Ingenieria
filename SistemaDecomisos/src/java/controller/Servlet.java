@@ -87,6 +87,11 @@ public class Servlet extends HttpServlet {
                     json = request.getParameter("actaDecomiso");
                     finalJson = new String(json.getBytes("iso-8859-1"), "UTF-8");
                     actaDecomiso = gson.fromJson(finalJson, ActaDecomiso.class);
+                    res = model.guardarInteresado(actaDecomiso.getInteresado());
+                    res = model.guardarPolicia(actaDecomiso.getPolicia());
+                    res = model.guardarTestigo(actaDecomiso.getTestigo());
+                    int fin = model.ultimaActaDecomiso();
+                    actaDecomiso.setIdDecomiso(fin+1);
                     res = model.guardarActaDecomiso(actaDecomiso);
                     out.write(res.toString());// Se envía el objeto Usuario como json al cliente
                     break;
