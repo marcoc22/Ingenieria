@@ -21,9 +21,16 @@
         <script src="js/login.js"></script>
         <script src="js/Proxy.js"></script>
         <script src="js/BaseDatos.js"></script>
-        <script src="js/objects/Usuario.js"></script>
+        <script src="js/objects/ActaDecomiso.js"></script>
+        <script src="js/objects/Decomiso.js"></script>
+        <script src="js/objects/Distrito.js"></script>
         <script src="js/objects/Funcionario.js"></script>
+        <script src="js/objects/Interesado.js"></script>
+        <script src="js/objects/Lugar.js"></script>
+        <script src="js/objects/Persona.js"></script>
         <script src="js/objects/Policia.js"></script>
+        <script src="js/objects/Testigo.js"></script>  
+        <script src="js/objects/Usuario.js"></script>   
         <link rel="shortcut icon" href="media/images/logo2.ico" type="image/x-icon" />
         
     </head>

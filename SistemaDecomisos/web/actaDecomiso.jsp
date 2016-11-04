@@ -155,7 +155,8 @@ Author     : Mery Zúñiga
                                             </div>
                                         </div>
                                         <div class="form-group status"  id="groupHora">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Hora del decomiso</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Hora del decomiso<span class="required">*</span>
+                                            </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input id="hora" class="form-control col-md-7 col-xs-12" type="time" required>
                                                 <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
@@ -199,10 +200,10 @@ Author     : Mery Zúñiga
                                                     <span class="fa fa-search form-control-feedback right" aria-hidden="true"></span>
                                                 </div>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="info_policia" checked value="identificacion">Buscar por identificación 
+                                                    <input type="radio" id="bIdentificacion" name="info_policia" checked="checked" value="identificacion">Buscar por identificación 
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="info_policia" value="nombre">Buscar por nombre
+                                                    <input type="radio" id="bNombre" name="info_policia" value="nombre">Buscar por nombre
                                                 </label>
                                             </div>
                                         </div>
@@ -250,7 +251,7 @@ Author     : Mery Zúñiga
                                             </div>
                                         </div>
                                         <div class="form-group status" id="groupIdInteresado">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_interesado">Identificación del interesado</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_interesado">Identir form-contficación del interesado</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input type="text" id="id_interesado" class="form-control col-md-7 col-xs-12">
                                                 <span class="fa fa-indent form-control-feedback right" aria-hidden="true"></span>
@@ -290,7 +291,7 @@ Author     : Mery Zúñiga
                                                                 <option value="no_perecederos">No Perecedero</option>
                                                             </select>
                                                         </td>
-                                                        <td><input type="number" class="form-control cantidad"/></td>
+                                                        <td><input id="cantidad" type="number" class="form-control cantidad"/></td>
                                                         <td><textarea class="resizable_textarea form-control observaciones"></textarea></td>
                                                         <td class="eliminar">Eliminar</td>
                                                     </tr>
@@ -304,7 +305,7 @@ Author     : Mery Zúñiga
                                                             </select>
                                                         </td>
                                                         <td><input type="number" class="form-control cantidad"/></td>
-                                                        <td><textarea class="resizable_textarea form-control observaciones"></textarea></td>
+                                                        <td><textarea id="proobs" class="resizable_textarea form-control observaciones"></textarea></td>
                                                         <td class="eliminar">Eliminar</td>
                                                     </tr>
 
@@ -320,7 +321,7 @@ Author     : Mery Zúñiga
                                         <div class="form-group">
                                             <label class="col-md-3 col-sm-3 col-xs-12">Observaciones</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea class="resizable_textarea form-control"></textarea>
+                                                <textarea id="observaciones" class="resizable_textarea form-control"></textarea>
                                                 <span class="fa fa-edit form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
@@ -371,11 +372,23 @@ Author     : Mery Zúñiga
         <!-- Custom Theme Scripts -->
         <script src="js/custom.js"></script>
         <script src="js/home.js"></script>
-        <script src="js/Proxy.js"></script>
+        <script src="js/Utils.js"></script>
         <script src="js/forms.js"></script>
         <script src="js/multifield.js"></script>
         <script src="js/validator.js"></script>
-
+        <script src="js/actas.js"></script>
+        <script src="js/Proxy.js"></script>
+        <script src="js/BaseDatos.js"></script>        
+        <script src="js/objects/ActaDecomiso.js"></script>
+        <script src="js/objects/Decomiso.js"></script>
+        <script src="js/objects/Distrito.js"></script>
+        <script src="js/objects/Funcionario.js"></script>
+        <script src="js/objects/Interesado.js"></script>
+        <script src="js/objects/Lugar.js"></script>
+        <script src="js/objects/Persona.js"></script>
+        <script src="js/objects/Policia.js"></script>
+        <script src="js/objects/Testigo.js"></script>  
+        <script src="js/objects/Usuario.js"></script>    
     </body>
 </html>
 

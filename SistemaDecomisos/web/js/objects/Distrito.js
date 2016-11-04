@@ -22,7 +22,7 @@ Distrito.to = function (distrito) {
     return {
         _class: 'Distrito',
         idDistrito: distrito.idDistrito, 
-        nombre : distrito.nombre
+        nombreDistrito : distrito.nombreDistrito
     };
 };
  
