@@ -24,7 +24,7 @@ function enviarActa(){
     var horaDecomiso = $('#hora').val();; 
     var interesado = new Interesado($('#id_interesado').val(), $('#fechaNac').val(), lugar); 
     var decomisos = [new Decomiso(5, "a", 1, "xxx"), new Decomiso(6, "a", 1, "xxx")]; 
-    var observaciones = "asdasd";
+    var observaciones = "a";
     var actaDecomiso = new ActaDecomiso(idDecomiso,policia, testigo, lugar,
                                         fechaDecomiso, horaDecomiso, interesado,
                                         decomisos, observaciones);

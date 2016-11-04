@@ -14,6 +14,7 @@ import java.sql.SQLException;
 //import java.util.Date;
 import java.sql.Date;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -219,53 +220,27 @@ public class Model {
         }
         return usuarios;
     }
-    /*
+    
      public int guardarActaDecomiso(ActaDecomiso acta) throws SQLException {
      Connection con = null;
      int res = 0;
      try {
      con = Pool.getConnection();
-     PreparedStatement pstmt = null;
-     ResultSet rs = null;
+     CallableStatement pstmt = null;
      if (con != null) {
-     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-     String mysql = "exec prc_ins_adecomiso("
-     + "?,"
-     + "?,"
-     + "?,"
-     + "?,"
-     + "?,"
-     + "?,"
-     + "?,"
-     + "? );"
-     + "'" + acta.getIdDecomiso() + "',"
-     + "'" + acta.getPolicia().getIdPolicia() + "',"
-     + "'" + acta.getInteresado().getIdInteresado() + "',"
-     + "'" + acta.getLugar().getDistrito().getIdDistrito() + "',"
-     + "'" + convertFromJAVADateToSQLDate(acta.getFecha()) + "',";
-
-     pstmt = con.prepareStatement(mysql);
-     pstmt.setInt(1, acta.getIdDecomiso());
-     pstmt.setInt(2, acta.getPolicia().getIdPolicia());
-     pstmt.setInt(3, acta.getInteresado().getIdInteresado());
-     pstmt.setInt(4, acta.getLugar().getDistrito().getIdDistrito());
-     pstmt.setString(5, p.getMadre());
-     pstmt.setDate(6, convertFromJAVADateToSQLDate(acta.getFecha()));
-     pstmt.setString(7, p.getFecharc());
-     pstmt.setString(8, p.getLugar_nacimiento());
-     pstmt.setInt(9, p.getTipo_id());
-     pstmt.setInt(10, p.getSexo());
-     pstmt.setString(11, p.getNombre());
-     pstmt.setString(12, p.getApellido1());
-     pstmt.setString(13, p.getApellido2());
-     pstmt.setString(14, p.getNombre_padre());
-     pstmt.setString(15, p.getNombre_madre());
-     pstmt.setString(16, p.getNombre_completo());
-     pstmt.setString(17, p.getNacionalidad());
-     pstmt.setString(18, p.getFuente());
-
+     SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+     String sql = "{call prc_ins_adecomiso('" + acta.getIdDecomiso() + "',"
+                        + "'1',"
+                        + "'1',"
+                        + "'1',"  
+                        + "'" + sdf.format(acta.getFecha())+ "',"
+                        + "'111'," 
+                        + "'" + acta.getObservaciones() + "'," 
+                        + "'" + 222
+                        + "')}";
+                pstmt = con.prepareCall(sql);
      pstmt.executeUpdate();
-     res = 1;
+     res = 2;
      }
 
      } catch (SQLException e) {
@@ -279,7 +254,6 @@ public class Model {
      }
      return res;
      }
-     */
 
     public static java.sql.Date convertFromJAVADateToSQLDate(java.util.Date javaDate) {
         java.sql.Date sqlDate = null;
