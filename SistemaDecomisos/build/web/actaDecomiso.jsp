@@ -43,50 +43,8 @@ Author     : Mery Zúñiga
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="home.jsp" class="site_title"><img src="media/images/logo_home.png"></a>
                         </div>
-
                         <div class="clearfix"></div>
-
-                        <!-- menu profile quick info -->
-                        <div class="profile">
-                            <div class="profile_pic">
-                                <img src="media/images/user.png" alt="..." class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                <span>Bienvenido,</span>
-                                <h2>User</h2>
-                            </div>
-                        </div>
-                        <!-- /menu profile quick info -->
-
-                        <br />
-
-                        <!-- sidebar menu -->
-                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                            <div class="menu_section">
-                                <h3>General</h3>
-                                <ul class="nav side-menu">
-                                    <li><a href="home.jsp"><i class="fa fa-home"></i> Inicio </a>
-                                    </li>
-                                    <li><a><i class="fa fa-edit"></i> Gestionar Decomisos <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="actaDecomiso.jsp">Registrar acta de decomiso</a></li>
-                                            <li><a href="#">Registrar acta de donación</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-bar-chart-o"></i> Ver Reportes <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="#">Gráfico de zonas</a></li>
-                                            <li><a href="#">Zonas recientes</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /sidebar menu -->
-
-                        <!-- /menu footer buttons -->
-
-                        <!-- /menu footer buttons -->
+                        <%@ include file="Fragmentos/side.jspf" %>
                     </div>
                 </div>
 
@@ -97,19 +55,7 @@ Author     : Mery Zúñiga
                             <div class="nav toggle">
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="media/images/user.png" alt="">User
-                                        <span class=" fa fa-angle-down"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a id="administrar" href="gestionarUsuarios.jsp"><i class="fa fa-cog pull-right" ></i> Gestión de Usuarios</a></li>
-                                        <li><a id="logout"><i class="fa fa-sign-out pull-right" ></i> Cerrar Sesión</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <%@ include file="Fragmentos/header.jspf" %>
                         </nav>
                     </div>
                 </div>
@@ -129,10 +75,10 @@ Author     : Mery Zúñiga
                                     <br />
                                     <form id="acta_decomiso" role="form" class="form-horizontal form-label-left">
                                         <div class="form-group status">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="distrito">Distrito/dirección específica del decomiso<span class="required">*</span>
+                                            <label class="control-label col-sm-3 col-xs-12" for="distrito">Distrito<span class="required">*</span>
                                             </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="col-md-5">
+                                            <div class="control-label">
+                                                <div class="col-md-2 ">
                                                     <select class="form-control" name="distrito" id="distrito">
                                                         <option value="heredia">Heredia</option>
                                                         <option value="mercedes">Mercedes</option>
@@ -141,17 +87,22 @@ Author     : Mery Zúñiga
                                                         <option value="vara_blanca">Vara Blanca</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-7" id="groupLugar">
-                                                    <textarea required class="form-control" id="direccion" type="text"></textarea>
-                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="groupDireccion" class="form-group status">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="distrito">Dirección específica del decomiso<span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-xs-10" id="groupLugar">
+                                                <textarea required class="form-control" id="direccion" type="text"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group status"  id="groupFecha">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha del decomiso<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input id="fecha" class="date-picker form-control col-md-7 col-xs-12" type="date"  required>
+                                                <input id="fecha" class="date-picker form-control col-md-7 col-xs-12" type="date" min="2016-01-01" max="2100-01-01"  required>
                                                 <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                                <span class="alert-dismissible form-control-static"> Ejemplo 10/10/2016</span>
                                             </div>
                                         </div>
                                         <div class="form-group status"  id="groupHora">
@@ -160,22 +111,17 @@ Author     : Mery Zúñiga
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <input id="hora" class="form-control col-md-7 col-xs-12" type="time" required>
                                                 <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
+                                                <span class="alert-dismissible form-control-static"> Ejemplo 10:30 a.m</span>
                                             </div>
                                         </div>
                                         <div class="form-group status">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre_policia">Nombre e identificacion del Policía Municipal encargado<span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre_policia">Identificacion del Policía Municipal encargado<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div id="groupNombrePolicia">
                                                     <input type="text" id="id_policia" class="form-control col-md-7 col-xs-12" required="required">
                                                     <span class="fa fa-search form-control-feedback right" aria-hidden="true"></span>
                                                 </div>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="nombre_policia" value="identificacion">Buscar por identificación 
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="nombre_policia" value="nombre">Buscar por nombre
-                                                </label>
                                             </div>
                                         </div>
                                         <div class="form-group status" id="groupNombreTestigo">
@@ -189,22 +135,16 @@ Author     : Mery Zúñiga
                                                 <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                         <div class="form-group status" hidden="true" id="info_testigo_policia">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="info_policia">Nombre e identificacion del Policía Municipal testigo<span class="required">*</span>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="info_policia">Identificacion del Policía Municipal testigo<span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div id="info_test_policia">
                                                     <input type="text" id="info_policia" class="form-control col-md-7 col-xs-12" required="required">
                                                     <span class="fa fa-search form-control-feedback right" aria-hidden="true"></span>
                                                 </div>
-                                                <label class="radio-inline">
-                                                    <input type="radio" id="bIdentificacion" name="info_policia" checked="checked" value="identificacion">Buscar por identificación 
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" id="bNombre" name="info_policia" value="nombre">Buscar por nombre
-                                                </label>
                                             </div>
                                         </div>
                                         <div id="info_testigo_civil" hidden="true"> 
@@ -232,21 +172,21 @@ Author     : Mery Zúñiga
                                         <div class="form-group status" id="groupApellido1Interesado">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido1_interesado">Primer Apellido </label>              
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="apellido1_interesado" required class="form-control col-md-7 col-xs-12">
+                                                <input type="text" id="apellido1_interesado" class="form-control col-md-7 col-xs-12">
                                                 <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
                                         <div class="form-group status" id="groupApellido2Interesado">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido2_interesado">Segundo Apellido </label>              
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="apellido2_interesado" required class="form-control col-md-7 col-xs-12">
+                                                <input type="text" id="apellido2_interesado" class="form-control col-md-7 col-xs-12">
                                                 <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
                                         <div class="form-group status" id="groupNombreInteresado">
                                             <label class="control-label  col-md-3 col-sm-3 col-xs-12" for="nombre_interesado">Nombre </label>              
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="nombre_interesado" required class="form-control col-md-7 col-xs-12">
+                                                <input type="text" id="nombre_interesado" class="form-control col-md-7 col-xs-12">
                                                 <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
@@ -267,8 +207,8 @@ Author     : Mery Zúñiga
                                         <!-- Cabecera de la tabla -->
                                         <div class="x_title">
                                             <div class="clearfix"></div>
-                                            
-                                         
+
+
                                         </div>
                                         <span class="section">Datos de Decomisos</span>
                                         <div class="form-group">
@@ -291,9 +231,9 @@ Author     : Mery Zúñiga
                                                                 <option value="no_perecederos">No Perecedero</option>
                                                             </select>
                                                         </td>
-                                                        <td><input id="cantidad" type="number" class="form-control cantidad"/></td>
-                                                        <td><textarea class="resizable_textarea form-control observaciones"></textarea></td>
-                                                        <td class="eliminar">Eliminar</td>
+                                                        <td><input id="cantidad"  type="number" min="1" class="form-control cantidad" required/></td>
+                                                        <td><textarea class="resizable_textarea form-control observaciones" required></textarea></td>
+                                                        <td class="eliminar btn-danger btn-xs btn-group-justified btn-round">Eliminar</td>
                                                     </tr>
                                                     <!-- fin de código: fila base -->
                                                     <!-- Fila de ejemplo -->
@@ -304,9 +244,9 @@ Author     : Mery Zúñiga
                                                                 <option value="no_perecederos">No Perecedero</option>
                                                             </select>
                                                         </td>
-                                                        <td><input type="number" class="form-control cantidad"/></td>
-                                                        <td><textarea id="proobs" class="resizable_textarea form-control observaciones"></textarea></td>
-                                                        <td class="eliminar">Eliminar</td>
+                                                        <td><input required type="number" min="1" class="form-control cantidad"/></td>
+                                                        <td><textarea required id="proobs" class="resizable_textarea form-control observaciones"></textarea></td>
+                                                        <td class="eliminar btn-danger btn-xs btn-group-justified btn-round">Eliminar</td>
                                                     </tr>
 
                                                     <!-- fin de código: fila de ejemplo -->
@@ -335,7 +275,6 @@ Author     : Mery Zúñiga
                                                 <button type="reset" class="btn btn-danger" id="cancelarActa_Dec"><i class="fa fa-remove"></i> Cancelar </button>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -355,6 +294,34 @@ Author     : Mery Zúñiga
                     <div class="clearfix"></div>
                 </footer>
                 <!-- /footer content -->
+            </div>
+        </div>
+        <div id="exito" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: #fff; background: #00aeef">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Éxito</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Se ingresó el acta de decomiso en la base de datos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalErrores" class="modal fade" role="dialog">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #f00; color: #000">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Atención, se presentaron los siguientes errores: </h4>
+                    </div>
+                    <div class="modal-body" id="errorList">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
 

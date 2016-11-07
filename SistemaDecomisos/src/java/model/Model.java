@@ -230,8 +230,8 @@ public class Model {
      if (con != null) {
      SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
      String sql = "{call prc_ins_adecomiso('" + acta.getIdDecomiso() + "',"
-                        + "'" + acta.getPolicia().getIdPolicia() + "'," 
-                        + "'" + acta.getInteresado().getIdInteresado() + "'," 
+                        + "'"+ 5 + "'," 
+                        + "'" + acta.getInteresado().getIdInteresado()+ "'," 
                         + "'1',"  
                         + "'" + sdf.format(acta.getFecha())+ "',"
                         + "'111'," 
@@ -302,7 +302,7 @@ public class Model {
             if (con != null) {
 
                 String sql = "{call prc_ins_pm('"
-                        + "10','" + policia.getNombre()+ "')}";
+                        + "1','" + policia.getNombre()+ "')}";
                 pstmt = con.prepareCall(sql);
 
                 pstmt.executeUpdate();
@@ -396,5 +396,63 @@ public class Model {
         
         
         
+    }
+    
+    public int getIdInteresado(String cedula){
+        Connection con = null;
+        int id = -1;
+        try {
+            con = Pool.getConnection();
+            Statement pstmt = null;
+            ResultSet rs = null;
+            if (con != null) {
+
+                String sql = "select idInteresado from Interesado where cedula="+cedula;
+                pstmt = con.createStatement();
+                rs = pstmt.executeQuery(sql);
+                if(rs.next()) {
+                    id = rs.getInt("idinteresado");
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return id;
+    }
+    
+    public int getIdPolicia(String cedula){
+        Connection con = null;
+        int id = -1;
+        try {
+            con = Pool.getConnection();
+            Statement pstmt = null;
+            ResultSet rs = null;
+            if (con != null) {
+
+                String sql = "select idInteresado from Interesado where PoliciaMunicipal="+cedula;
+                pstmt = con.createStatement();
+                rs = pstmt.executeQuery(sql);
+                if(rs.next()) {
+                    id = rs.getInt("idinteresado");
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return id;
     }
 }

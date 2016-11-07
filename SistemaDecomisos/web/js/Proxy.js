@@ -116,7 +116,7 @@ Proxy.guardarUsuario = function (criterio) {
         dataType: 'json',
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
-            
+
             var mensaje = "";
             var divError = document.getElementById("alertError");
             var divSuccess = document.getElementById("alertSuccess");
@@ -158,29 +158,6 @@ Proxy.guardarUsuario = function (criterio) {
 };
 
 Proxy.actaDecomiso = function (criterio) {
-//    var distrito = Distrito.to(JSON.parse(criterio).lugar.distrito);
-//    var ndistitro = JSON.stringify(distrito, replacer);
-//    var policia = Policia.to(JSON.parse(criterio).policia);
-//    var npolicia = JSON.stringify(policia, replacer);
-//    var testigo = Testigo.to(JSON.parse(criterio).testigo);
-//    var ntestigo = JSON.stringify(testigo, replacer);
-//    var lugar = Lugar.to(JSON.parse(criterio).lugar);
-//    var nlugar = JSON.stringify(lugar, replacer);
-//    var interesado = Interesado.to(JSON.parse(criterio).interesado);
-//    var ninteresado = JSON.stringify(interesado, replacer);
-//    var decomiso = [];
-//    var i =0;
-//    while(i < JSON.parse(criterio).decomiso.length) {
-//       decomiso[i] = Distrito.to(JSON.parse(criterio).decomisos[i]);
-//       i++;
-//    }
-//        
-//    var ndecomiso = [];
-//    var j =0;
-//    while(j < decomiso.length){
-//        ndecomiso[j] = JSON.stringify(decomiso[i], replacer);
-//        j++;
-//    }
     var s = ActaDecomiso.to(JSON.parse(criterio));
     var ns = JSON.stringify(s, replacer);
     $.ajax({
@@ -193,9 +170,9 @@ Proxy.actaDecomiso = function (criterio) {
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
             if (data === 2) {
-                alert("Se guardo el acta de decomiso");
-                window.location.href = "home.jsp";
+            actaDecomisoModal();      
             } else {
+                alert("No se guardó");
                 $("#login").html("Iniciar Sesi\u00F3n ");
                 errorLogin();
             }

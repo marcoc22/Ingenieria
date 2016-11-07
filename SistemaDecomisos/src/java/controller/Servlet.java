@@ -73,6 +73,7 @@ public class Servlet extends HttpServlet {
                     if (usuario != null) {
                         //Funcionario funcionario=model.obtenerFuncionario(String id);
                         request.getSession().setAttribute("usuario", usuario);// El objeto Usuario es enviado a la sesión
+                        request.getSession().setAttribute("nick", usuario.getNick());
                         //request.getSession().setAttribute("funcionario", funcionario);
                     }
                     json = gson.toJson(usuario);
@@ -80,6 +81,7 @@ public class Servlet extends HttpServlet {
                     break;
                 case "userLogout":
                     request.getSession().removeAttribute("usuario");
+                    request.getSession().removeAttribute("nick");
                     request.getSession().removeAttribute("model");
                     request.getSession().invalidate();
                     break;
@@ -88,6 +90,10 @@ public class Servlet extends HttpServlet {
                     finalJson = new String(json.getBytes("iso-8859-1"), "UTF-8");
                     actaDecomiso = gson.fromJson(finalJson, ActaDecomiso.class);
                     res = model.guardarInteresado(actaDecomiso.getInteresado());
+                    if (res != 2){
+                        res = model.getIdInteresado(actaDecomiso.getInteresado().getIdentificacion());
+                        actaDecomiso.getInteresado().setIdInteresado(res);
+                    }
                     res = model.guardarPolicia(actaDecomiso.getPolicia());
                     res = model.guardarTestigo(actaDecomiso.getTestigo());
                     int fin = model.ultimaActaDecomiso();

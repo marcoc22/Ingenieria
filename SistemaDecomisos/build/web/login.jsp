@@ -38,7 +38,6 @@
         <div class="login_wrapper">
             <div class="animate form login-form">
                 <section class="login-content">
-                    
                         <h1>Sistema de Gestión de Decomisos</h1>
                         <div class="logo ">
                             <img src="media/images/logo.png" alt="logo">
