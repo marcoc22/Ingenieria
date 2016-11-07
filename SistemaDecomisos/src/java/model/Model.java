@@ -231,7 +231,7 @@ public class Model {
      SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
      String sql = "{call prc_ins_adecomiso('" + acta.getIdDecomiso() + "',"
                         + "'" + acta.getPolicia().getIdPolicia() + "'," 
-                        + "'" + acta.getInteresado().getIdInteresado() + "'," 
+                        + "'" + acta.getInteresado().getIdentificacion() + "'," 
                         + "'1',"  
                         + "'" + sdf.format(acta.getFecha())+ "',"
                         + "'111'," 
